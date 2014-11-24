@@ -71,6 +71,7 @@ function getVideoInfoByVideoUrl(videoUrl, format, callBack){
             var sid = tempSplited[0];
             var token = tempSplited[1];
             var whole = sid+"_"+vid+"_"+token;
+            console.log(whole)
             var newBytes = whole.split('').map(function(c) { return c.charCodeAt(); });
             var epNew = myEncoder(template2, newBytes, true )
             var finalUrl = "http://pl.youku.com/playlist/m3u8?ctype=12&ep="+epNew+"&ev=1&keyframe=1&oip="+videoIp+"&sid="+sid+"&token="+token+"&type="+format+"&vid="+vid;
@@ -78,4 +79,9 @@ function getVideoInfoByVideoUrl(videoUrl, format, callBack){
         })
 }
 
-module.exports.getVideoInfoByVideoUrl = getVideoInfoByVideoUrl;
+
+
+getVideoInfoByVideoUrl('http://v.youku.com/v_show/id_XODMyNTI2ODI4.html', 'mp4', function(vid, finalUrl, logo){
+
+})
+// module.exports.getVideoInfoByVideoUrl = getVideoInfoByVideoUrl;
