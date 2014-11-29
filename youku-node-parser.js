@@ -74,6 +74,7 @@ function getVideoInfoByVideoUrl(videoUrl, format, callBack){
             console.log(whole)
             var newBytes = whole.split('').map(function(c) { return c.charCodeAt(); });
             var epNew = myEncoder(template2, newBytes, true )
+            epNew = querystring.escape(epNew);
             var finalUrl = "http://pl.youku.com/playlist/m3u8?ctype=12&ep="+epNew+"&ev=1&keyframe=1&oip="+videoIp+"&sid="+sid+"&token="+token+"&type="+format+"&vid="+vid;
             callBack(vid, finalUrl, jsondata.data[0].logo);
         })
