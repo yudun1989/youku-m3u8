@@ -2,6 +2,7 @@
 import re
 import requests
 import base64
+import urllib
 
 def parse_url(video_url):
 	def get_video_id(video_url):
@@ -60,12 +61,14 @@ def parse_url(video_url):
 	whole = sid + '_' + vid + '_' + token
 	new_bytes = map(lambda x:ord(x), whole)
 	ep_new = my_encoder(template2, new_bytes, True)
+    ep_new = urllib.quote(ep_new)
 	final_url = "http://pl.youku.com/playlist/m3u8?ctype=12&ep="+ep_new+"&ev=1&keyframe=1&oip="+str(video_ip)+"&sid="+str(sid)+"&token="+token+"&type="+'mp4'+"&vid="+vid
 	return final_url
 
 
 def test():
-	print parse_url("http://v.youku.com/v_show/id_XODMyNTI2ODI4.html")
+	# print parse_url("http://v.youku.com/v_show/id_XODMyNTI2ODI4.html")
+	print parse_url("http://v.youku.com/v_show/id_XNzgyNTIyODQw.html")
 
 if __name__ == '__main__':
 	test()
